@@ -1,0 +1,42 @@
+{
+  "name": "hexo-tag-random-embed",
+  "version": "0.0.1",
+  "main": "index",
+  "dependencies": {
+    "log-util" : "^1.1.2",
+    "hexo-fs" : "^0.1.6",
+    "object-assign" : "^4.1.1"
+  },
+  "description": "Plugin embed html into markdown for Hexo.",
+  "devDependencies": {},
+  "directories": {
+    "lib": "./lib"
+  },
+  "author": {
+    "email": "tea3gtinfo@gmail.com",
+    "name": "tea3",
+    "url": "https://tea3.github.io/"
+  },
+  "bugs": {
+    "url": "https://github.com/tea3/hexo-tag-random-embed/issues"
+  },
+  "keywords": [
+    "hexo",
+    "tag",
+    "embed",
+    "blog",
+    "html",
+    "adsense"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "tea3gt",
+      "email": "tea3gtinfo@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tea3/hexo-tag-random-embed.git"
+  }
+}
