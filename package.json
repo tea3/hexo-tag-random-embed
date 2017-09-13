@@ -4,7 +4,7 @@
   "main": "index",
   "dependencies": {
     "log-util" : "^1.1.2",
-    "hexo-fs" : "^0.1.6",
+    "hexo-fs" : "^0.2.2",
     "object-assign" : "^4.1.1"
   },
   "description": "Plugin embed html into markdown for Hexo.",
