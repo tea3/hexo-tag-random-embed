@@ -58,6 +58,20 @@ hexo.extend.tag.register('randomEmbed', function(args , content) {
       return array;
     }
     
+    function getHtmlData(jsonList){
+      if(jsonList && jsonList != ""){
+        if(jsonList.htmlData && jsonList.htmlData != ""){
+          return jsonList.htmlData;
+        }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description){
+          return '<div class="babylink-box"><div class="babylink-image"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '"><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '">' + jsonList.title + '</a></div><div class="babylink-description">' + jsonList.description + '</div></div></div>';
+        }else{
+          return "";
+        }
+      }else{
+        return "";
+      }
+    }
+    
 
     if(args.length > 2){
       for(i = 2; i < args.length; i++){
@@ -74,7 +88,7 @@ hexo.extend.tag.register('randomEmbed', function(args , content) {
 
     for( i = 0; i < listData.length; i++){
       if( listData[i].instanceID == instanceID ){
-        matchList.push({ "mc" : FORCENUM , "htmlData" : listData[i].htmlData });
+        matchList.push({ "mc" : FORCENUM , "htmlData" : getHtmlData(listData[i]) });
       }else{
         var matchCnt = 0;
         for( var j = 0; j < tags.length; j++){
@@ -82,7 +96,7 @@ hexo.extend.tag.register('randomEmbed', function(args , content) {
             matchCnt++;
           }
         }
-        if( matchCnt > 0 )matchList.push({ "mc" : matchCnt , "htmlData" : listData[i].htmlData });
+        if( matchCnt > 0 )matchList.push({ "mc" : matchCnt , "htmlData" : getHtmlData(listData[i]) });
       }
     }
 
@@ -100,7 +114,7 @@ hexo.extend.tag.register('randomEmbed', function(args , content) {
     }
 
     for( i = 0; i < listCount && i < matchList.length; i++){
-      returnHTML += matchList[i].htmlData;
+      returnHTML += getHtmlData(matchList[i]);
     }
 
     if(classes != "")returnHTML = '<div class="' + classes + '">' + returnHTML + '</div>';
