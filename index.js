@@ -4,6 +4,7 @@ var pathFn  = require('path');
 var assign  = require('object-assign');
 var fs      = require('hexo-fs');
 var lg      = require('./lib/log.js');
+var mk      = require('marked');
 
 
 // checking _config.yml
@@ -63,7 +64,10 @@ hexo.extend.tag.register('randomEmbed', function(args , content) {
         if(jsonList.htmlData && jsonList.htmlData != ""){
           return jsonList.htmlData;
         }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description){
-          return '<div class="babylink-box"><div class="babylink-image"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '"><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '">' + jsonList.title + '</a></div><div class="babylink-description">' + jsonList.description + '</div></div></div>';
+          
+          let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"");
+          
+          return '<div class="babylink-box"><div class="babylink-image"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '"><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/' + jsonList.ASIN + '">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>';
         }else{
           return "";
         }
