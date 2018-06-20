@@ -40,7 +40,7 @@ let getHtmlData = (jsonList) => {
   if(jsonList && jsonList != ""){
     if(jsonList.htmlData && jsonList.htmlData != ""){
       return jsonList.htmlData
-    }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description){
+    }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description != undefined){
       
       let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"")
       
