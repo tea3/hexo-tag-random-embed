@@ -40,6 +40,12 @@ let getHtmlData = (jsonList) => {
   if(jsonList && jsonList != ""){
     if(jsonList.htmlData && jsonList.htmlData != ""){
       return jsonList.htmlData
+    }else if(jsonList.PA_API_URL && jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description != undefined){
+      
+      let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"")
+      
+      return '<div class="babylink-box"><div class="babylink-image"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL"><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>'
+      
     }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description != undefined){
       
       let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"")
