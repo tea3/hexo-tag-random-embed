@@ -104,6 +104,11 @@ let getRamdomEmbed = (args) => {
     }
   }
 
+  if(matchList && matchList.length == 0){
+    lg.log("warn", "No matching keywords were found. Please check the parameters." , "")
+    console.log(args)
+  }
+
   // sort by matchCnt
   matchList.sort(function (a,b){
     if(b.mc == a.mc){
