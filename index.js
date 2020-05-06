@@ -39,7 +39,15 @@ let shuffle = (array) => {
 let getHtmlData = (jsonList) => {
   let sstore = ""
   if(jsonList && jsonList != "" && jsonList.sstore){
-    sstore = encodeURIComponent(jsonList.sstore)
+    sstore = ` data-sstore="${encodeURIComponent(jsonList.sstore)}"`
+  }
+  let s5store = ""  
+  if(jsonList && jsonList != "" && jsonList.s5store){
+    if(jsonList.s5store != ""){
+      s5store = ` data-s5store="${encodeURIComponent(jsonList.s5store)}"`
+    }
+  }else if(jsonList && jsonList != "" && jsonList.s5store == ""){
+    s5store = ` data-s5store="none"`
   }
   
   if(jsonList && jsonList != ""){
@@ -49,7 +57,7 @@ let getHtmlData = (jsonList) => {
       
       let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"")
       
-      return '<div class="babylink-box"><div class="babylink-image"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL" data-sstore="' + sstore + '"><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>'
+      return '<div class="babylink-box"><div class="babylink-image"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL"' + s5store + sstore + '><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>'
       
     }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description != undefined){
       
