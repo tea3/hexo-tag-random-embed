@@ -41,6 +41,14 @@ let getHtmlData = (jsonList) => {
   if(jsonList && jsonList != "" && jsonList.sstore){
     sstore = ` data-sstore="${encodeURIComponent(jsonList.sstore)}"`
   }
+  let ystore = ""
+  if(jsonList && jsonList != "" && jsonList.ystore){
+    ystore = ` data-ystore="${jsonList.ystore}"`
+  }
+  let rstore = ""
+  if(jsonList && jsonList != "" && jsonList.rstore){
+    rstore = ` data-rstore="${jsonList.rstore}"`
+  }
   let s5store = ""  
   if(jsonList && jsonList != "" && jsonList.s5store){
     if(jsonList.s5store != ""){
@@ -57,7 +65,7 @@ let getHtmlData = (jsonList) => {
       
       let desc = mk(jsonList.description).replace(/\n$/,"").replace(/^\<p\>/,"").replace(/\<\/p\>$/,"")
       
-      return '<div class="babylink-box"><div class="babylink-image"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL"' + s5store + sstore + '><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>'
+      return '<div class="babylink-box"><div class="babylink-image"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL"' + s5store + sstore + ystore + rstore + '><img src="' + jsonList.img.url + '" width="' + jsonList.img.width + '" height="' + jsonList.img.height + '" /></a></div><div class="babylink-info"><div class="babylink-title"><a href="' + jsonList.PA_API_URL + '" class="PA_API_URL">' + jsonList.title + '</a></div><div class="babylink-description">' + desc + '</div></div></div>'
       
     }else if(jsonList.ASIN && jsonList.title && jsonList.img && jsonList.description != undefined){
       
